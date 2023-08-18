@@ -1,0 +1,13 @@
+<center>
+<h1>My Posts</h1>
+
+<% @blogpost.each do |blogpost| %>
+    <%# if blogpost.user == current_user %>
+            <b><%= blogpost.title %></b>
+            <div style="border: 2px solid; width:300px; margin-bottom:10px; border-radius:10px; background-color:orange;">
+            <p><%= truncate(blogpost.body, :length => 100) %><%= link_to "Read more", blogpost %></p>
+        </div>
+    <%# end %>
+<% end %>
+</div>
+</center>

@@ -1,0 +1,32 @@
+<center>
+<h3><%= @blogpost.title %></h3>
+<div style="border: 2px solid; width:700px; padding:10px; border-radius:10px; background-color:#E8DAEF;">
+    <%= @blogpost.body %><br><br>
+</div>
+</center>
+
+<div style= "display:flex; justify-content:center; margin-top:20px;">
+    <div align="center" style="overflow:auto; border: 2px solid; height:150px;
+        width:350px; padding:10px; border-radius:10px; margin-right:20px; background-color:#F8C471;">
+        
+        <h5><%= @blogpost.comments.count %> Comments</h5>
+        <%= render @blogpost.comments %>
+    </div>
+
+    <% if user_signed_in? %>
+        <div align="center" style="border: 2px solid; height:150px; width:350px; border-radius:10px; background-color:#FADBD8;">
+            <b>Add a Comment</b>
+            <%= render "comments/form" %><br><br>
+        </div>
+    <% end %>
+</div>
+
+<center>
+    <ul style= "display:flex; list-style-type:none; justify-content:space-between; width:250px; margin-top:20px;">
+        <% if @blogpost.user == current_user %>
+            <li><button><%= link_to "Edit", edit_blogpost_path(@blogpost),style:"text-decoration:none; color:black;" %></button></li>
+            <li><%= button_to "delete", @blogpost, method: :delete, data: { turbo_confirm: "Are You Sure?" } %></li>
+        <% end %>
+        <li><button><%= link_to "Back", root_path, style:"text-decoration:none; color:black;" %></button></li>
+    </ul>
+</center>

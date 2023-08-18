@@ -1,0 +1,9 @@
+<p><%#= comment.name %></p>
+<%= comment.body %><br />
+(<%= time_ago_in_words(comment.created_at) %>)<br />
+<% if user_signed_in? %>
+    <% if comment.email == current_user.email %>
+        <p><%= button_to "Delete", [comment.blogpost,comment], method: :delete, data: { turbo_confirm: "Are You Sure?" } %></p>
+    <% end %>
+<% end %>
+-----------------------------------

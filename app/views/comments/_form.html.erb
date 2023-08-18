@@ -1,0 +1,10 @@
+<%= form_for([@blogpost,@blogpost.comments.build] , remote: true) do |comment| %>
+        <% if comment.object.errors.any? %>
+                <% comment.object.errors.full_messages.each do |message| %>
+                        <div><%= message %></div>
+                <% end %>
+        <% end %>
+        <p><%= comment.text_area :body, style: "width:300px; height:60px" %></p>
+        <%= comment.text_field :email, value: current_user.email, type: :hidden %>
+        <p><%= comment.submit %></p>
+<% end %>

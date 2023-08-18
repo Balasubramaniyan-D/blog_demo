@@ -1,0 +1,24 @@
+<%= form_with model: @blogpost do |blogpost| %>
+
+        <% if blogpost.object.errors.any? %>
+                <% blogpost.object.errors.full_messages.each do |message| %>
+                        <div><%= message %></div>
+                <% end %>
+        <% end %>
+        <div style="border: 2px solid; width:500px; margin:10px; padding:20px; border-radius:10px">
+        <b><%= blogpost.label :title %></b><br />
+        <%= blogpost.text_field :title %><br><br>
+
+        <b><%= blogpost.label :body %></b><br />
+        <%= blogpost.text_area :body %><br><br>
+
+        <b><%= blogpost.label :category %></b><br />
+        <%= blogpost.select(:category, options_for_select([["IT", "IT"],["Non-IT", "Non-IT"],["Medical", "Medical"]])) %><br><br>
+
+        <%= blogpost.number_field :user_id, id: :blogpost_user_id, value: current_user.id, type: :hidden %><br />
+
+        <%= blogpost.submit %><br><br>
+        </div>
+
+        <%= link_to "Back", root_path %>
+<% end %>
