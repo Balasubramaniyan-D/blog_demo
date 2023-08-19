@@ -1,5 +1,5 @@
 class BlogpostsController < ApplicationController
-    before_action :correct_user, only: [:edit, :update, :destroy]
+    #before_action :correct_user, only: [:edit, :update, :destroy]
 
     def index
         @category = params[:category]
@@ -7,6 +7,7 @@ class BlogpostsController < ApplicationController
             @blogpost = Blogpost.where(category: "#{@category}")
         else
             @blogpost = Blogpost.all
+            #render(json: @blogpost)
         end
     end
 
@@ -53,10 +54,10 @@ class BlogpostsController < ApplicationController
         @blogpost = Blogpost.where(user_id: current_user.id)
     end
 
-    def correct_user
-        @blogpost = current_user.blogposts.find_by(id: params[:id])
-        redirect_to blogposts_path, notice: "Not an Authorized User" if @blogpost.nil?
-    end
+    #def correct_user
+        #@blogpost = current_user.blogposts.find_by(id: params[:id])
+        #redirect_to blogposts_path, notice: "Not an Authorized User" if @blogpost.nil?
+    #end
 
 
     private
